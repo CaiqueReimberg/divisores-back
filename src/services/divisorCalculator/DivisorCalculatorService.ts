@@ -21,7 +21,7 @@ export class DivisorCalculatorService implements IDivisorCalculatorService {
       auxiliarDivisor -= 1;
     }
 
-    return allDivisors === 2;
+    return allDivisors === 2 || currentNumber === 1;
   }
 
   /**
@@ -32,13 +32,13 @@ export class DivisorCalculatorService implements IDivisorCalculatorService {
   * @return {IDivisorsAndPrimes} divisores e divisores primos em uma interface.
   **/
   calculateAllDivisorsAndPrimes(currentNumber: number): IDivisorsAndPrimes {
-    let auxiliarDivisor = currentNumber;
+    let auxiliarDivisor = 1;
     const divisorsAndPrimes: IDivisorsAndPrimes = {
       divisors: [],
       primes: []
     };
 
-    while(auxiliarDivisor > 0) {
+    while(auxiliarDivisor <= currentNumber) {
       if (currentNumber % auxiliarDivisor === 0) {
         divisorsAndPrimes.divisors.push(auxiliarDivisor);
 
@@ -46,6 +46,8 @@ export class DivisorCalculatorService implements IDivisorCalculatorService {
           divisorsAndPrimes.primes.push(auxiliarDivisor);
         }
       }
+
+      auxiliarDivisor += 1;
     }
 
     return divisorsAndPrimes;
