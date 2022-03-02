@@ -19,7 +19,7 @@ export class DivisorCalculatorController {
       const divisorsAndPrimes = this.divisorCalculatorUseCase.execute(Number(selectedNumber));
 
       return response.status(200).json({
-        divisorsAndPrimes
+        ...divisorsAndPrimes
       });
     } catch (error) {
       console.error(error.message);
